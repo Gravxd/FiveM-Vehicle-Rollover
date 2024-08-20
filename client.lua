@@ -53,7 +53,9 @@ end
 local BlockedClasses = {
     [8] = true, -- Motorcycles
     [13] = true, -- Cycles
-    [14] = true, -- Boats   
+    [14] = true, -- Boats
+    [15] = true, -- Helicopters
+    [16] = true, -- Planes
 }
 
 lib.onCache(
