@@ -38,7 +38,7 @@ local function RolloverThread()
                         SetVehicleEngineHealth(vehicle, 300)
                         SetVehicleUndriveable(vehicle, true)
                         CrashNotification()
-                        ShakeGameplayCam("SMALL_EXPLOSION_SHAKE", 1.0)
+                        ShakeGameplayCam("SMALL_EXPLOSION_SHAKE", 0.5)
                     end
 
                     if not IsEntityUpsidedown(vehicle) and isFlipped then
@@ -50,12 +50,22 @@ local function RolloverThread()
     )
 end
 
+local BlockedClasses = {
+    [8] = true, -- Motorcycles
+    [13] = true, -- Cycles
+    [14] = true, -- Boats   
+}
+
 lib.onCache(
     "vehicle",
     function(value)
         if not value then
             isFlipped = false
             Running = false
+            return
+        end
+
+        if BlockedClasses[GetVehicleClass(value)] then
             return
         end
 
