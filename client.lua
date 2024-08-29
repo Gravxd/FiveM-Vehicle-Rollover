@@ -68,6 +68,7 @@ lib.onCache(
         end
 
         if BlockedClasses[GetVehicleClass(value)] then
+            Running = false
             return
         end
 
